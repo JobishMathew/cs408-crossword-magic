@@ -136,9 +136,24 @@ public class CrosswordMagicViewModel extends ViewModel {
             // into an array of strings, which you can use to initialize a Word object.  Add each
             // Word object to the "wordMap" hash map; for the key names, use the box number
             // followed by the direction (for example, "16D" for Box # 16, Down).
-
-            puzzleHeight.setValue(15); // DELETE THIS!
-            puzzleWidth.setValue(15); // DELETE THIS!
+            while((line = br.readLine().trim())!= null  ){
+                    fields = line.split("\t");
+                    if(fields.length == Word.HEADER_FIELDS){
+                        setPuzzleHeight(Integer.parseInt(fields[0]));
+                        setPuzzleWidth(Integer.parseInt(fields[1]));
+                    }
+                    if(fields.length == Word.DATA_FIELDS){
+                        Word word = new Word(fields);
+                        String key = word.getBox() + word.getDirection();
+                        wordMap.put(key, word);
+                        if(word.isAcross()) {
+                            aString.append(word.getBox() + ": " + word.getClue()+ "\n");
+                        }
+                        if(word.isDown()) {
+                            dString.append(word.getBox() + ": " + word.getClue()+ "\n");
+                        }
+                    }
+            }
 
         } catch (Exception e) {}
 
@@ -161,8 +176,21 @@ public class CrosswordMagicViewModel extends ViewModel {
 
             Word w = e.getValue();
 
-            // INSERT YOUR CODE HERE
-
+       /*     // INSERT YOUR CODE HERE
+            int row = w.getRow();
+            int col = w.getColumn();
+            String word = w.getWord();
+            String dir = w.getDirection();
+            aNumbers[row][col] =w.getBox();
+            for(int i=0; i<word.length(); ++i){
+                char c = word.charAt(i);
+                aLetters[row][col] = c;
+                if(dir.equals(word.acros))
+                    ++col;
+                else if(dir.equals(word.down))
+                    ++row;
+            }
+                */
         }
 
         this.letters.setValue(aLetters);
