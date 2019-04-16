@@ -176,21 +176,19 @@ public class CrosswordMagicViewModel extends ViewModel {
 
             Word w = e.getValue();
 
-       /*     // INSERT YOUR CODE HERE
+          // INSERT YOUR CODE HERE
             int row = w.getRow();
             int col = w.getColumn();
             String word = w.getWord();
-            String dir = w.getDirection();
             aNumbers[row][col] =w.getBox();
             for(int i=0; i<word.length(); ++i){
-                char c = word.charAt(i);
-                aLetters[row][col] = c;
-                if(dir.equals(word.acros))
+               // char c = word.charAt(i);
+                aLetters[row][col] = ' ';
+                if((w.isAcross()))
                     ++col;
-                else if(dir.equals(word.down))
+                else if((w.isDown()))
                     ++row;
             }
-                */
         }
 
         this.letters.setValue(aLetters);
