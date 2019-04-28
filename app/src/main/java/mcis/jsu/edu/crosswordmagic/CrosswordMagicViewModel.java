@@ -142,7 +142,7 @@ public class CrosswordMagicViewModel extends ViewModel {
                         setPuzzleHeight(Integer.parseInt(fields[0]));
                         setPuzzleWidth(Integer.parseInt(fields[1]));
                     }
-                     if(fields.length == Word.DATA_FIELDS){
+                    if(fields.length == Word.DATA_FIELDS){
                         Word word = new Word(fields);
                         String key = word.getBox() + word.getDirection();
                         wordMap.put(key, word);
@@ -174,22 +174,21 @@ public class CrosswordMagicViewModel extends ViewModel {
 
         for (HashMap.Entry<String, Word> e : wordMap.entrySet()) {
 
-         /*   Word w = e.getValue();
+            Word w = e.getValue();
 
-           // INSERT YOUR CODE HERE
+          // INSERT YOUR CODE HERE
             int row = w.getRow();
             int col = w.getColumn();
             String word = w.getWord();
-            String dir = w.getDirection();
             aNumbers[row][col] =w.getBox();
             for(int i=0; i<word.length(); ++i){
-                char c = word.charAt(i);
-                aLetters[row][col] = c;
-                if(dir.equals(Word.ACROSS))
+               // char c = word.charAt(i);
+                aLetters[row][col] = ' ';
+                if((w.isAcross()))
                     ++col;
-                else if(dir.equals(Word.DOWN))
-                    +*/
-
+                else if((w.isDown()))
+                    ++row;
+            }
         }
 
         this.letters.setValue(aLetters);
